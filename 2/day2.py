@@ -19,7 +19,7 @@ def part1():
 		if int(lower) <= occ and occ <= int(upper):
 			count = count+1
 
-	print(count)
+	return count
 
 
 def part2():
@@ -34,9 +34,8 @@ def part2():
 
 		if (password[int(pos1)-1]==letter) != (password[int(pos2)-1] == letter):
 			count = count+1
-		else:
-			print(d)
 
-	print(count)
+	return count
 
-part2()
+print(part1())
+print(part2())

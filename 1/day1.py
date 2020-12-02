@@ -14,8 +14,8 @@ def part1():
 	for n in nums:
 		for m in nums:
 			if n+m==s:
-				print(n*m)
-				return
+				return n*m
+				
 
 def part2():
 	nums = read_data()
@@ -24,9 +24,9 @@ def part2():
 		for m in nums:
 			for k in nums:
 				if n+m+k==s:
-					print(n*m*k)
-					return
+					return n*m*k
 
-part2()
+print(part1())
+print(part2())
 
 			
