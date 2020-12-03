@@ -2,7 +2,7 @@
 def read_data():
 	with open ('input.txt') as f:
 		data = f.readlines()
-	return data
+	return [d.strip() for d in data]
 
 
 def part1():
@@ -12,7 +12,7 @@ def part1():
 	y = 0
 
 	for ii in range(1,len(data)):
-		d = data[ii].strip()
+		d = data[ii]
 		y = (y+3)%len(d)
 		is_tree = d[y] == '#'
 
@@ -29,7 +29,7 @@ def count(y_s, x_s, data):
 
 	x = x+x_s
 	while x < len(data):
-		d = data[x].strip()
+		d = data[x]
 		y = (y+y_s)%len(d)
 		is_tree = d[y] == '#'
 		
@@ -46,7 +46,6 @@ def part2():
 
 	slopes = [(1,1),(3,1),(5,1),(7,1),(1,2)]
 
-	# slopes = [(1,1),(3,1)]
 	prod = 1
 	for s in slopes:
 		
