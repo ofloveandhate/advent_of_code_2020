@@ -103,7 +103,6 @@ def part2():
 
 
 	valid_tickets = [t for t in nearby_tickets if error_invalid_ticket(t, fields)==0]
-	print(len(valid_tickets))
 	c = 0
 
 	field_order = {}
@@ -118,7 +117,6 @@ def part2():
 			for jj in range(len(t)):
 				v = t[jj]
 				if f.in_range(v):
-					print(f'{f.name} is valid on {t} at position {jj} {v}')
 					order[jj] = order[jj]+1
 
 		field_order[f.name] = order
@@ -143,28 +141,20 @@ def part2():
 
 	final_orders = {}
 	while len(final_orders) < len(fieldnames):
-		print()
-		print(useme)
-		print(position)
-		print("rowsum", np.sum(useme,1))
+
 		rows = np.where(np.sum(useme,1)==1)[0]
-		print("rows", rows)
 		delme = []
 		for row in rows:
 			col = np.where(useme[row]==1)[0]
-			print("rc",row, col)
 			r = np.asscalar(row)
 			c = np.asscalar(col)
 			delme.append(c)
-			print("row", r)
-			print("col", c)
-			print(f'{fieldnames[r]} = {c}')
+
 			final_orders[fieldnames[r]] = position[c]
 
 		useme = np.delete(useme, delme,1)
 		position = np.delete(position, delme)
 
-			# useme = np.delete(useme, r,0)
 	p = 1
 	for k,v in final_orders.items():
 		if k.startswith('departure'):
@@ -172,5 +162,5 @@ def part2():
 
 	return p
 
-# print("part 1: {}".format(part1()))
+print("part 1: {}".format(part1()))
 print("part 2: {}".format(part2()))
