@@ -62,31 +62,27 @@ def possibilites(data, ind):
 	return s
 
 
-def process_block(data, ind, recurring=False):
-	print(f'block starting at {ind}, data: {data[ind]}')
+def process_block(data, ind):
 	nums = []
 	for ii in range(1,1+num_candidates(data, ind)):
 		n = num_candidates(data, ind+ii)
 		if n==1:
 			nums.append(1)
 		else:
-			nums.append(process_block(data,ind+ii,True))
-		# nums.append(process_block(data,ind+ii))
+			nums.append(process_block(data,ind+ii))
 
-	print(nums)
+
 	import numpy as np
 	n = np.sum(nums)
-	if not recurring:
-		print(f'{n} subpaths this block')
+
 	return n
 
 def part2():
 	data = read_data()
-	write_data(data)
+	# write_data(data)
 	p = 1
 
-	data = [0]+data+[max(data)+3]
-	questing = True
+	data = [0]+data+[max(data)+3] # take care of boundary conditions
 
 	if num_candidates(data,0)==1:
 		ii = ind_next_non_one(data,0)
@@ -95,17 +91,11 @@ def part2():
 
 	block_numbers = []
 	while ii<len(data)-1:
-		print(f'\n{ii}')
 		block_numbers.append(process_block(data, ii))
 
 		#skip to next block
 		ii = ind_next_one(data, ii)
 		ii = ind_next_non_one(data, ii)
-
-		# print(f'root {data[ii]}')
-		# s = 
-		# # print(s)
-		# p = p*s
 
 	import numpy as np
 	return np.prod(block_numbers)
