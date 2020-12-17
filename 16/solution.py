@@ -94,13 +94,8 @@ def part2():
 	data = read_data()
 
 	fields, data = parse_fields(data)
-
 	my_ticket = parse_your_ticket(data)
-
-
 	nearby_tickets = parse_nearby_tickets(data)
-
-
 
 	valid_tickets = [t for t in nearby_tickets if error_invalid_ticket(t, fields)==0]
 	c = 0
