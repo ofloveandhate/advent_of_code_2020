@@ -67,16 +67,11 @@ class Program(object):
 			memory[I.loc] = val_result(self.mask, I.val)
 
 	def execute2(self,memory):
-		print(f'\nmask: {self.mask}')
 		for I in self.instructions:
-			print(f'executing instruction {I}')
 
 			loc = '{0:036b}'.format(I.loc)
 
-
-
 			for ii in range(2**self.mask.count('X'),-1,-1):
-				print(f'iteration {ii}')
 				fmt = '{:0'+str(self.mask.count('X'))+'b}'
 				as_bin = fmt.format(ii)
 				dest = ''
@@ -95,10 +90,7 @@ class Program(object):
 						raise ValueError()
 						
 
-				print(f'dest:  {dest}')
-				
 				dest = int(dest,2)
-				print(f'[{dest}] = {I.val}')
 				memory[dest] = I.val
 
 class Computer(object):
